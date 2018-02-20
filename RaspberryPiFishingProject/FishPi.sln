@@ -13,6 +13,9 @@ Global
 		Release|ARM = Release|ARM
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
+		this|ARM = this|ARM
+		this|x64 = this|x64
+		this|x86 = this|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{982DD8FC-24DB-4DE2-9C32-3895C9A862F2}.Debug|ARM.ActiveCfg = Debug|ARM
@@ -33,6 +36,15 @@ Global
 		{982DD8FC-24DB-4DE2-9C32-3895C9A862F2}.Release|x86.ActiveCfg = Release|x86
 		{982DD8FC-24DB-4DE2-9C32-3895C9A862F2}.Release|x86.Build.0 = Release|x86
 		{982DD8FC-24DB-4DE2-9C32-3895C9A862F2}.Release|x86.Deploy.0 = Release|x86
+		{982DD8FC-24DB-4DE2-9C32-3895C9A862F2}.this|ARM.ActiveCfg = this|ARM
+		{982DD8FC-24DB-4DE2-9C32-3895C9A862F2}.this|ARM.Build.0 = this|ARM
+		{982DD8FC-24DB-4DE2-9C32-3895C9A862F2}.this|ARM.Deploy.0 = this|ARM
+		{982DD8FC-24DB-4DE2-9C32-3895C9A862F2}.this|x64.ActiveCfg = this|x64
+		{982DD8FC-24DB-4DE2-9C32-3895C9A862F2}.this|x64.Build.0 = this|x64
+		{982DD8FC-24DB-4DE2-9C32-3895C9A862F2}.this|x64.Deploy.0 = this|x64
+		{982DD8FC-24DB-4DE2-9C32-3895C9A862F2}.this|x86.ActiveCfg = this|x86
+		{982DD8FC-24DB-4DE2-9C32-3895C9A862F2}.this|x86.Build.0 = this|x86
+		{982DD8FC-24DB-4DE2-9C32-3895C9A862F2}.this|x86.Deploy.0 = this|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
