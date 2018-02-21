@@ -34,7 +34,7 @@ namespace FishPi
             UdpClient udpClient = new UdpClient(5000);
 
             //Ip address and port number of our unity build
-            string ip = "192.168.0.5";
+            string ip = "192.168.137.89";
             int port = 5000;
 
             //our endpoint
@@ -52,21 +52,34 @@ namespace FishPi
                 if (_senseHat.Sensors.Acceleration.HasValue)
                 {
                     //The data we will send over the network
-                    string data = _senseHat.Sensors.Acceleration.Value.X.ToString()+" "
-                        + _senseHat.Sensors.Acceleration.Value.Y.ToString()+" "
-                        +_senseHat.Sensors.Acceleration.Value.Z.ToString();
+                    string data = "Accelerometer\nX: "
+                        +(_senseHat.Sensors.Acceleration.Value.X * 10).ToString()
+                        +"\nY: "
+                        + (_senseHat.Sensors.Acceleration.Value.Y * 10).ToString()
+                        +"\nZ: "
+                        +(_senseHat.Sensors.Acceleration.Value.Z * 10).ToString()
+                        +" \n\nGyroscope"
+                        +"\nX: "
+                        +(_senseHat.Sensors.Gyro.Value.X).ToString()
+                        + "\nY: "
+                        + (_senseHat.Sensors.Gyro.Value.Y).ToString()
+                        + "\nZ: "
+                        + (_senseHat.Sensors.Gyro.Value.Z).ToString()
+                        ;
 
                     //Byte array to package our data
                     byte[] sendBytes = Encoding.ASCII.GetBytes(data);
                     //Send the data using a udpclient with our endpoint
                     client.SendTo(sendBytes, ep);
 
+                    Task.Delay(20).Wait();
+
                 }
                 //if there is no acceleration value
                 else
                 {
                     //Wait and try again
-                    Task.Delay(20).Wait();
+                    Task.Delay(500).Wait();
 
                 }
 
