@@ -11,7 +11,7 @@ using Windows.Devices.Enumeration;
 using Windows.Devices.I2c;
 
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
+ // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace FishPi
 {
@@ -20,6 +20,7 @@ namespace FishPi
     {
 
         private ISenseHat _senseHat { get; set; }
+        string ip = "192.168.137.1";
 
         public MainPage()
         {
@@ -31,8 +32,7 @@ namespace FishPi
 
         private async void Start(object sender, RoutedEventArgs e)
         {
-            //Ip address and port number of our unity build
-            string ip = "192.168.0.5";
+
             int port = 5000;
 
             //our endpoint
@@ -54,7 +54,7 @@ namespace FishPi
                 //Update the data from the IMU sensor
                 _senseHat.Sensors.ImuSensor.Update();
 
-
+                 
                 //If there is an acceleration value
                 if (_senseHat.Sensors.Acceleration.HasValue)
                 {

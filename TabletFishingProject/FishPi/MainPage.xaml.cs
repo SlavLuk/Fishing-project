@@ -9,6 +9,7 @@ using System;
 using System.Threading.Tasks;
 using Windows.Devices.Enumeration;
 using Windows.Devices.I2c;
+using System.Diagnostics;
 
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -18,21 +19,19 @@ namespace FishPi
 
     public sealed partial class MainPage : Page
     {
-
-        private ISenseHat _senseHat { get; set; }
+        private Accelerometer _accelerometer;
 
         public MainPage()
         {
             this.InitializeComponent();
 
-
             Loaded += Start;
         }
 
-        private async void Start(object sender, RoutedEventArgs e)
+        private void Start(object sender, RoutedEventArgs e)
         {
             //Ip address and port number of our unity build
-            string ip = "192.168.0.5";
+            string ip = "192.168.43.169";
             int port = 5000;
 
             //our endpoint
@@ -41,39 +40,23 @@ namespace FishPi
             //UDP socket
             Socket client = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
 
-            //get our sense hat
-            _senseHat = await GetSenseHatAsync();
-
-
             //udp client on port 5000
             UdpClient udpClient = new UdpClient(5000);
 
             while (true)
             {
-
-                //Update the data from the IMU sensor
-                _senseHat.Sensors.ImuSensor.Update();
+                _accelerometer = Accelerometer.GetDefault();
 
 
-                //If there is an acceleration value
-                if (_senseHat.Sensors.Acceleration.HasValue)
+                if (_accelerometer != null)
                 {
 
+                    AccelerometerReading reading = _accelerometer.GetCurrentReading();
+
                     //The data we will send over the network
-                    string data = "Accelerometer\nX: "
-                        + (_senseHat.Sensors.Acceleration.Value.X * 10).ToString()
-                        + "\nY: "
-                        + (_senseHat.Sensors.Acceleration.Value.Y * 10).ToString()
-                        + "\nZ: "
-                        + (_senseHat.Sensors.Acceleration.Value.Z * 10).ToString()
-                        + " \n\nGyroscope"
-                        + "\nX: "
-                        + (_senseHat.Sensors.Gyro.Value.X*10).ToString()
-                        + "\nY: "
-                        + (_senseHat.Sensors.Gyro.Value.Y*10).ToString()
-                        + "\nZ: "
-                        + (_senseHat.Sensors.Gyro.Value.Z*10).ToString()
-                        ;
+                    string data =  reading.AccelerationX.ToString()+"\n "
+                                    + reading.AccelerationY.ToString() + "\n "
+                                    + reading.AccelerationZ.ToString() + "\n ";
 
                     //Byte array to package our data
                     byte[] sendBytes = Encoding.ASCII.GetBytes(data);
@@ -81,7 +64,6 @@ namespace FishPi
                     client.SendTo(sendBytes, ep);
 
                     Task.Delay(200).Wait();
-
                 }
                 //if there is no acceleration value
                 else
@@ -94,21 +76,6 @@ namespace FishPi
             }
 
         }
-
-        private async Task<ISenseHat> GetSenseHatAsync() {
-
-            Task<ISenseHat> task = Task.Run(async() => 
-            {
-
-                return await SenseHatFactory.GetSenseHat();
-
-            });
-
-            task.Wait();
-
-            return await task;
-
-        }
-
     }
+
 }
