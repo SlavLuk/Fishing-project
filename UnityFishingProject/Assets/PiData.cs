@@ -14,6 +14,8 @@ public class PiData : MonoBehaviour {
     const int port = 5000;
     //Using UDP Client, We dont need a socket Just collect the data if its offered
     UdpClient client = new UdpClient(port);
+	//Use the Ip and port as End Point
+	IPEndPoint ep;
 
     //For testing purposes
     public Text name_text;
@@ -22,7 +24,9 @@ public class PiData : MonoBehaviour {
     {
 
         // Open our client
-        client = new UdpClient(5000);
+        client = new UdpClient(port);
+
+		ep = new IPEndPoint(ip, port);
 
     }
 
@@ -32,16 +36,14 @@ public class PiData : MonoBehaviour {
 
         try
         {
-			//Use the Ip and port as End Point
-			IPEndPoint ep = new IPEndPoint(ip, 5000);
 
             //Collect Data from Our UDP stream
             var receivedData = client.Receive(ref ep);
 
 			if(receivedData != null)
 			{
-            //For Testing purpose - Sets a Text object to a string of the incoming Data
-            this.name_text.text = Encoding.ASCII.GetString(receivedData);
+	            //For Testing purpose - Sets a Text object to a string of the incoming Data
+	            this.name_text.text = Encoding.ASCII.GetString(receivedData);
 			}
 
         }

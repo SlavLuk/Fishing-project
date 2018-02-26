@@ -21,49 +21,55 @@ namespace FishPi
     {
         private Accelerometer _accelerometer;
 
+        //UDP socket
+        Socket client = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+
+        //Ip address and port number of our unity build
+        string ip = "127.0.0.1";
+        int port = 5000;
+        EndPoint ep;
+
         public MainPage()
         {
-            this.InitializeComponent();
+            //Default accelerometer
+            _accelerometer = Accelerometer.GetDefault();
+
+            //our endpoint
+            ep = new IPEndPoint(IPAddress.Parse(ip), port);
 
             Loaded += Start;
+
         }
 
         private void Start(object sender, RoutedEventArgs e)
         {
-            //Ip address and port number of our unity build
-            string ip = "192.168.43.169";
-            int port = 5000;
-
-            //our endpoint
-            IPEndPoint ep = new IPEndPoint(IPAddress.Parse(ip), port);
-
-            //UDP socket
-            Socket client = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-
-            //udp client on port 5000
-            UdpClient udpClient = new UdpClient(5000);
 
             while (true)
             {
-                _accelerometer = Accelerometer.GetDefault();
 
 
                 if (_accelerometer != null)
                 {
+                    try
+                    {
+                        //Read the accelerometer
+                        AccelerometerReading readingAccel = _accelerometer.GetCurrentReading();
 
-                    AccelerometerReading reading = _accelerometer.GetCurrentReading();
+                        //The data we will send over the network
+                        string data = (readingAccel.AccelerationX * 10).ToString() + "\n "
+                                        + (readingAccel.AccelerationY * 10).ToString() + "\n "
+                                        + (readingAccel.AccelerationZ * 10).ToString() + "\n ";
 
-                    //The data we will send over the network
-                    string data =  reading.AccelerationX.ToString()+"\n "
-                                    + reading.AccelerationY.ToString() + "\n "
-                                    + reading.AccelerationZ.ToString() + "\n ";
+                        //Byte array to package our data
+                        byte[] sendBytes = Encoding.ASCII.GetBytes(data);
+                        //Send the data using a udpclient with our endpoint
+                        client.SendTo(sendBytes, ep);
 
-                    //Byte array to package our data
-                    byte[] sendBytes = Encoding.ASCII.GetBytes(data);
-                    //Send the data using a udpclient with our endpoint
-                    client.SendTo(sendBytes, ep);
-
-                    Task.Delay(200).Wait();
+                        Task.Delay(200).Wait();
+                    }
+                    catch (Exception) {
+                        Debug.WriteLine("Failed to send");
+                    }
                 }
                 //if there is no acceleration value
                 else
