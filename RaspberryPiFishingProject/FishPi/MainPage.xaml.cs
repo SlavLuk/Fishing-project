@@ -20,7 +20,7 @@ namespace FishPi
     {
 
         private ISenseHat _senseHat { get; set; }
-        string ip = "192.168.37.1";
+        string ip = "192.168.137.1";
 
         public MainPage()
         {

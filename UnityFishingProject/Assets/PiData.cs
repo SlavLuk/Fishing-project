@@ -10,15 +10,22 @@ public class PiData : MonoBehaviour {
 
     //Read from any IP Address
 	IPAddress ip = IPAddress.Any;
+
     //Use port 5000 - Same on our Pi
     const int port = 5000;
+
     //Using UDP Client, We dont need a socket Just collect the data if its offered
     UdpClient client = new UdpClient(port);
+
 	//Use the Ip and port as End Point
 	IPEndPoint ep;
 
     //For testing purposes
     public Text name_text;
+
+	public static int x = 0;
+	public static int y = 0;
+	public static int z = 0;
 
     void Start()
     {
