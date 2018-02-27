@@ -23,9 +23,12 @@ public class PiData : MonoBehaviour {
     //For testing purposes
     public Text name_text;
 
-	public static int x = 0;
-	public static int y = 0;
-	public static int z = 0;
+	public static int changeInX = 0;
+	public static int changeInY = 0;
+	public static int changeInZ = 0;
+
+	public static int[] previousReading = {0,0,0};
+	public static string[] currentReading;
 
     void Start()
     {
@@ -34,6 +37,18 @@ public class PiData : MonoBehaviour {
         client = new UdpClient(port);
 
 		ep = new IPEndPoint(ip, port);
+
+		var receivedData = client.Receive(ref ep);
+
+		if(receivedData != null)
+		{
+			currentReading = Encoding.ASCII.GetString(receivedData).Split(' ', '\t');
+
+			previousReading[0] = (int)Double.Parse(currentReading[0]);
+			previousReading[1] = (int)Double.Parse(currentReading[1]);
+			previousReading[2] = (int)Double.Parse(currentReading[2]);
+
+		}
 
     }
 
@@ -49,10 +64,17 @@ public class PiData : MonoBehaviour {
 
 			if(receivedData != null)
 			{
-	            //For Testing purpose - Sets a Text object to a string of the incoming Data
-	            this.name_text.text = Encoding.ASCII.GetString(receivedData);
-			}
+				currentReading = Encoding.ASCII.GetString(receivedData).Split(' ', '\t');
 
+				changeInX = (int)Double.Parse(currentReading[0]) - previousReading[0];
+				changeInY = (int)Double.Parse(currentReading[1]) - previousReading[1];
+				changeInZ = (int)Double.Parse(currentReading[2]) - previousReading[2];
+
+	            //For Testing purpose - Sets a Text object to a string of the incoming Data
+				this.name_text.text = changeInX +"\n" +changeInY +"\n" +changeInZ;
+
+			}
+		
         }
         catch (Exception)
         {
