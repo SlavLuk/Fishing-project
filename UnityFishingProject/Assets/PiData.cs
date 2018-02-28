@@ -89,7 +89,7 @@ public class PiData : MonoBehaviour {
 				accelerationOfZ = (int)Double.Parse(currentReading[2]) - previousReading[2];
 
 	            //For Testing purpose - Sets a Text object to a string of the incoming Data
-				this.name_text.text = accelerationOfX +"\n" +accelerationOfY +"\n" +accelerationOfZ +"\n" +MoveSphere.moveZ +"\n"+difference;
+				this.name_text.text = accelerationOfX +"\n" +accelerationOfY +"\n" +accelerationOfZ +"\n"+"\n"+difference;
 
 				//Make the new initial time = the time the reading that was taken
 				initalTime = TimeSpan.Parse(currentReading[3]);
