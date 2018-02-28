@@ -58,7 +58,8 @@ namespace FishPi
                         //The data we will send over the network
                         string data = (readingAccel.AccelerationX * 10).ToString() + "\n "
                                         + (readingAccel.AccelerationY * 10).ToString() + "\n "
-                                        + (readingAccel.AccelerationZ * 10).ToString() + "\n ";
+                                        + (readingAccel.AccelerationZ * 10).ToString() + "\n "
+                                        + DateTime.Now.TimeOfDay;
 
                         //Byte array to package our data
                         byte[] sendBytes = Encoding.ASCII.GetBytes(data);

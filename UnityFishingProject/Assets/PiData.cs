@@ -23,12 +23,19 @@ public class PiData : MonoBehaviour {
     //For testing purposes
     public Text name_text;
 
-	public static int changeInX = 0;
-	public static int changeInY = 0;
-	public static int changeInZ = 0;
+	//variables for storing and passing acceleration to our object
+	public static int accelerationOfX = 0;
+	public static int accelerationOfY = 0;
+	public static int AccelerationOfZ = 0;
 
+	//variables to store our readings
 	public static int[] previousReading = {0,0,0};
 	public static string[] currentReading;
+
+	//Variables used to calculate time
+	TimeSpan initalTime;
+	TimeSpan difference;
+
 
     void Start()
     {
@@ -36,22 +43,28 @@ public class PiData : MonoBehaviour {
         // Open our client
         client = new UdpClient(port);
 
+		//end point
 		ep = new IPEndPoint(ip, port);
 
+		//Incoming data variable
 		var receivedData = client.Receive(ref ep);
 
 		if(receivedData != null)
 		{
+			//Seperate the Incomming byte(converted to string), into seperate values
 			currentReading = Encoding.ASCII.GetString(receivedData).Split(' ', '\t');
 
+			//Initial readings from the incoming data
 			previousReading[0] = (int)Double.Parse(currentReading[0]);
 			previousReading[1] = (int)Double.Parse(currentReading[1]);
 			previousReading[2] = (int)Double.Parse(currentReading[2]);
 
+			//initial time taken from the incoming data
+			initalTime = TimeSpan.Parse(currentReading[3]);
+
 		}
 
     }
-
 
     void Update()
     {
@@ -64,14 +77,22 @@ public class PiData : MonoBehaviour {
 
 			if(receivedData != null)
 			{
+				//Difference in time from the latest reading and the new reading.
+				difference = DateTime.Now.TimeOfDay - initalTime;
+
+				//Seperate the Incomming byte(converted to string), into seperate values
 				currentReading = Encoding.ASCII.GetString(receivedData).Split(' ', '\t');
 
-				changeInX = (int)Double.Parse(currentReading[0]) - previousReading[0];
-				changeInY = (int)Double.Parse(currentReading[1]) - previousReading[1];
-				changeInZ = (int)Double.Parse(currentReading[2]) - previousReading[2];
+				//3 Axis for X,Y and Z
+				accelerationOfX = (int)Double.Parse(currentReading[0]) - previousReading[0];
+				accelerationOfY = (int)Double.Parse(currentReading[1]) - previousReading[1];
+				AccelerationOfZ = (int)Double.Parse(currentReading[2]) - previousReading[2];
 
 	            //For Testing purpose - Sets a Text object to a string of the incoming Data
-				this.name_text.text = changeInX +"\n" +changeInY +"\n" +changeInZ;
+				this.name_text.text = accelerationOfX +"\n" +accelerationOfY +"\n" +AccelerationOfZ +"\n" +currentReading [3] ;
+
+				//Make the new initial time = the time the reading that was taken
+				initalTime = TimeSpan.Parse(currentReading[3]);
 
 			}
 		

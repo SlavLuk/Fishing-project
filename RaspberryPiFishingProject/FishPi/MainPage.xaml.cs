@@ -5,7 +5,7 @@ using Windows.Devices.Sensors;
 using Windows.UI.Xaml.Controls;
 using Emmellsoft.IoT.Rpi.SenseHat;
 using Windows.UI.Xaml;
-using System;
+using System 
 using System.Threading.Tasks;
 using Windows.Devices.Enumeration;
 using Windows.Devices.I2c;

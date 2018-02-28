@@ -14,8 +14,13 @@ public class MoveSphere : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		//s = ut + 1/2 at² - equation for distance
+
+		//rotate our objsct
 		transform.Rotate(0, 0, 0);
-		transform.Translate(PiData.changeInX,PiData.changeInY,PiData.changeInZ);
+		//move our objext
+		transform.Translate(0,0,0);
+
 
 	}
 }
