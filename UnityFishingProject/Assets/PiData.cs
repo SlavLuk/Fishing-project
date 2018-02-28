@@ -26,15 +26,15 @@ public class PiData : MonoBehaviour {
 	//variables for storing and passing acceleration to our object
 	public static int accelerationOfX = 0;
 	public static int accelerationOfY = 0;
-	public static int AccelerationOfZ = 0;
+	public static int accelerationOfZ = 0;
 
 	//variables to store our readings
 	public static int[] previousReading = {0,0,0};
 	public static string[] currentReading;
 
 	//Variables used to calculate time
-	TimeSpan initalTime;
-	TimeSpan difference;
+	public TimeSpan initalTime;
+	public static TimeSpan difference;
 
 
     void Start()
@@ -86,10 +86,10 @@ public class PiData : MonoBehaviour {
 				//3 Axis for X,Y and Z
 				accelerationOfX = (int)Double.Parse(currentReading[0]) - previousReading[0];
 				accelerationOfY = (int)Double.Parse(currentReading[1]) - previousReading[1];
-				AccelerationOfZ = (int)Double.Parse(currentReading[2]) - previousReading[2];
+				accelerationOfZ = (int)Double.Parse(currentReading[2]) - previousReading[2];
 
 	            //For Testing purpose - Sets a Text object to a string of the incoming Data
-				this.name_text.text = accelerationOfX +"\n" +accelerationOfY +"\n" +AccelerationOfZ +"\n" +currentReading [3] ;
+				this.name_text.text = accelerationOfX +"\n" +accelerationOfY +"\n" +accelerationOfZ +"\n" +MoveSphere.moveZ +"\n"+difference;
 
 				//Make the new initial time = the time the reading that was taken
 				initalTime = TimeSpan.Parse(currentReading[3]);

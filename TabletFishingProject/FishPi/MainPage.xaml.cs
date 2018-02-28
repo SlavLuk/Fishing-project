@@ -20,6 +20,8 @@ namespace FishPi
     public sealed partial class MainPage : Page
     {
         private Accelerometer _accelerometer;
+        private Gyrometer _gyrometer;
+        private Magnetometer _magnetometer;
 
         //UDP socket
         Socket client = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
@@ -33,6 +35,8 @@ namespace FishPi
         {
             //Default accelerometer
             _accelerometer = Accelerometer.GetDefault();
+            _gyrometer = Gyrometer.GetDefault();
+            _magnetometer = Magnetometer.GetDefault();
 
             //our endpoint
             ep = new IPEndPoint(IPAddress.Parse(ip), port);
@@ -46,7 +50,6 @@ namespace FishPi
 
             while (true)
             {
-
 
                 if (_accelerometer != null)
                 {
