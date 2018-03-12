@@ -20,7 +20,8 @@ namespace FishPi
     {
 
         private ISenseHat _senseHat { get; set; }
-        string ip = "192.168.137.1";
+        private string ip = "192.168.137.1";
+		private  int port = 5000;
 
         public MainPage()
         {
@@ -33,7 +34,7 @@ namespace FishPi
         private async void Start(object sender, RoutedEventArgs e)
         {
 
-            int port = 5000;
+         
 
             //our endpoint
             IPEndPoint ep = new IPEndPoint(IPAddress.Parse(ip), port);
@@ -46,7 +47,7 @@ namespace FishPi
 
 
             //udp client on port 5000
-            UdpClient udpClient = new UdpClient(5000);
+          //  UdpClient udpClient = new UdpClient(port);
 
             while (true)
             {
