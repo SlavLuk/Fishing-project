@@ -7,18 +7,16 @@ using UnityEngine.UI;
 
 public class PiData : MonoBehaviour {
 
+	  //Use port 5000 - Same on our Pi
+	private const int port = 5000;
+	
+	
+	  //Using UDP Client, We dont need a socket Just collect the data if its offered
+    private UdpClient client;
 
-    //Read from any IP Address
-	IPAddress ip = IPAddress.Any;
+		//Use the Ip and port as End Point
+	private IPEndPoint ep;
 
-    //Use port 5000 - Same on our Pi
-    const int port = 5000;
-
-    //Using UDP Client, We dont need a socket Just collect the data if its offered
-    UdpClient client = new UdpClient(port);
-
-	//Use the Ip and port as End Point
-	IPEndPoint ep;
 
     //For testing purposes
     public Text name_text;
@@ -44,7 +42,7 @@ public class PiData : MonoBehaviour {
         client = new UdpClient(port);
 
 		//end point
-		ep = new IPEndPoint(ip, port);
+		ep = new IPEndPoint(IPAddress.Any, port);
 
 		//Incoming data variable
 		var receivedData = client.Receive(ref ep);

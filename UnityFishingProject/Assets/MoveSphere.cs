@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MoveSphere : MonoBehaviour {
 
-	// Use this for initi ;alization
+	//Start is called once 
 	void Start () {
 
 
@@ -17,7 +17,7 @@ public class MoveSphere : MonoBehaviour {
 
 		//rotate our object
 		transform.Rotate(0, 0, 0);
-		//move our objext
+		//move our object
 		transform.Translate((int)PiData.accelerationOfX,(int)PiData.accelerationOfY,0);
 
 	}
