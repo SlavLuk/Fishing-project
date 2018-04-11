@@ -5,13 +5,13 @@ using Windows.Devices.Sensors;
 using Windows.UI.Xaml.Controls;
 using Emmellsoft.IoT.Rpi.SenseHat;
 using Windows.UI.Xaml;
-using System 
+using System;
 using System.Threading.Tasks;
 using Windows.Devices.Enumeration;
 using Windows.Devices.I2c;
 
 
- // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
+// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace FishPi
 {
@@ -61,19 +61,18 @@ namespace FishPi
                 {
 
                     //The data we will send over the network
-                    string data = "Accelerometer\nX: "
-                        + (_senseHat.Sensors.Acceleration.Value.X * 10).ToString()
-                        + "\nY: "
+                    string data =  (_senseHat.Sensors.Acceleration.Value.X * 10).ToString()
+                        + "\n "
                         + (_senseHat.Sensors.Acceleration.Value.Y * 10).ToString()
-                        + "\nZ: "
+                        + "\n "
                         + (_senseHat.Sensors.Acceleration.Value.Z * 10).ToString()
-                        + " \n\nGyroscope"
-                        + "\nX: "
+                        + "\n "
                         + (_senseHat.Sensors.Gyro.Value.X*10).ToString()
-                        + "\nY: "
+                        + "\n "
                         + (_senseHat.Sensors.Gyro.Value.Y*10).ToString()
-                        + "\nZ: "
+                        + "\n "
                         + (_senseHat.Sensors.Gyro.Value.Z*10).ToString()
+                        +" "
                         ;
 
                     //Byte array to package our data
@@ -105,7 +104,7 @@ namespace FishPi
 
             });
 
-            task.Wait();
+            task.Wait(); 
 
             return await task;
 
