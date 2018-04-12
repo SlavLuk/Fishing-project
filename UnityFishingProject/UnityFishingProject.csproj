@@ -237,6 +237,7 @@
   <ItemGroup>
     <Compile Include="Assets\MoveSphere.cs" />
     <Compile Include="Assets\PiData.cs" />
+    <Compile Include="Assets\ResetBallPosition.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

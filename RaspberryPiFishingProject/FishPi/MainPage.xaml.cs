@@ -44,7 +44,7 @@ namespace FishPi
             UdpClient udpClient = new UdpClient(port);
 
             while (true)
-            {
+            {,
                 //Update the data from the IMU sensor
                 _senseHat.Sensors.ImuSensor.Update();
 
