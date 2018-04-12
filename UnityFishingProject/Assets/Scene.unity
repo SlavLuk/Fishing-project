@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 26421195}
   - component: {fileID: 26421197}
   - component: {fileID: 26421194}
+  - component: {fileID: 26421198}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -207,6 +208,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08c9a5ce1e5a3bc458a05fe580e53ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &26421198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 26421192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a406b5f8ca4ff044bb35edf11b09cfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &333749515
@@ -456,6 +468,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1622868243}
   - component: {fileID: 1622868242}
+  - component: {fileID: 1622868244}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -488,6 +501,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1622868244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1622868241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1434e61a7ce6bbf469288d0ade0bb421, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name_text: {fileID: 1889516833}
 --- !u!1 &1889516831
 GameObject:
   m_ObjectHideFlags: 0
