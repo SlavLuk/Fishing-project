@@ -1,15 +1,11 @@
 ﻿using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using Windows.Devices.Sensors;
 using Windows.UI.Xaml.Controls;
 using Emmellsoft.IoT.Rpi.SenseHat;
 using Windows.UI.Xaml;
 using System;
 using System.Threading.Tasks;
-using Windows.Devices.Enumeration;
-using Windows.Devices.I2c;
-using System.Diagnostics;
 
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -27,7 +23,6 @@ namespace FishPi
         public MainPage()
         {
             this.InitializeComponent();
-
 
             Loaded += Start;
         }
@@ -50,8 +45,6 @@ namespace FishPi
 
             while (true)
             {
-                Debug.WriteLine("TESTS");
-
                 //Update the data from the IMU sensor
                 _senseHat.Sensors.ImuSensor.Update();
 
@@ -67,8 +60,6 @@ namespace FishPi
                         + "\n "
                         + (_senseHat.Sensors.Acceleration.Value.Z * 10).ToString();
 
-                    Debug.WriteLine(data);
-
                     //Byte array to package our data
                     byte[] sendBytes = Encoding.ASCII.GetBytes(data);
                     //Send the data using a udpclient with our endpoint
@@ -80,10 +71,9 @@ namespace FishPi
                 //if there is no acceleration value
                 else
                 {
-                    Debug.WriteLine("Error");
 
                     //Wait and try again
-                    Task.Delay(500).Wait();
+                    Task.Delay(200).Wait();
 
                 }
 
