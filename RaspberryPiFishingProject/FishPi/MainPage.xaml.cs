@@ -17,7 +17,7 @@ namespace FishPi
     {
 
         private ISenseHat _senseHat { get; set; }
-        private string ip = "192.168.137.1";
+        private string ip = "192.168.0.7";
 		private  int port = 5000;
 
         public MainPage()
@@ -44,13 +44,13 @@ namespace FishPi
             UdpClient udpClient = new UdpClient(port);
 
             while (true)
-            {,
+            {
                 //Update the data from the IMU sensor
                 _senseHat.Sensors.ImuSensor.Update();
 
-                 
+
                 //If there is an acceleration value
-                if (_senseHat.Sensors.Acceleration.HasValue)
+                if (_senseHat.Sensors.Acceleration.HasValue && _senseHat.Sensors.Gyro.HasValue)
                 {
 
                     //The data we will send over the network
@@ -58,7 +58,14 @@ namespace FishPi
                         + "\n "
                         + (_senseHat.Sensors.Acceleration.Value.Y * 10).ToString()
                         + "\n "
-                        + (_senseHat.Sensors.Acceleration.Value.Z * 10).ToString();
+                        + (_senseHat.Sensors.Acceleration.Value.Z * 10).ToString()
+                        +"\n "
+                        +(_senseHat.Sensors.Gyro.Value.X).ToString()
+                        + "\n "
+                        + (_senseHat.Sensors.Gyro.Value.Y).ToString()
+                        + "\n "
+                        + (_senseHat.Sensors.Gyro.Value.Z).ToString()
+                        ;
 
                     //Byte array to package our data
                     byte[] sendBytes = Encoding.ASCII.GetBytes(data);
@@ -90,7 +97,7 @@ namespace FishPi
 
             });
 
-            task.Wait(); 
+            task.Wait();
 
             return await task;
 

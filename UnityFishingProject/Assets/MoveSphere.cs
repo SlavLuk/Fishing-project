@@ -18,7 +18,7 @@ public class MoveSphere : MonoBehaviour {
 		//rotate our object
 		transform.Rotate(0, 0, 0);
 		//move our object
-		transform.Translate((int)PiData.accelerationOfX,(int)PiData.accelerationOfY,0);
+		transform.Translate((int)PiData.accelerationOfX,(int)PiData.accelerationOfY, (int)PiData.accelerationOfZ);
 
 	}
 }

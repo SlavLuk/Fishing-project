@@ -19,6 +19,7 @@ public class ResetBallPosition : MonoBehaviour {
     public void ResetBall()
     {
 
-        transform.SetPositionAndRotation(new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
+        transform.SetPositionAndRotation(new Vector3(0, 0, 7.94f), Quaternion.Euler(0, 0, 0));
+
     }
 }
