@@ -1,17 +1,14 @@
 ﻿using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using Windows.Devices.Sensors;
 using Windows.UI.Xaml.Controls;
 using Emmellsoft.IoT.Rpi.SenseHat;
 using Windows.UI.Xaml;
-using System 
+using System;
 using System.Threading.Tasks;
-using Windows.Devices.Enumeration;
-using Windows.Devices.I2c;
 
 
- // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
+// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace FishPi
 {
@@ -27,14 +24,11 @@ namespace FishPi
         {
             this.InitializeComponent();
 
-
             Loaded += Start;
         }
 
         private async void Start(object sender, RoutedEventArgs e)
         {
-
-         
 
             //our endpoint
             IPEndPoint ep = new IPEndPoint(IPAddress.Parse(ip), port);
@@ -47,11 +41,10 @@ namespace FishPi
 
 
             //udp client on port 5000
-          //  UdpClient udpClient = new UdpClient(port);
+            UdpClient udpClient = new UdpClient(port);
 
             while (true)
-            {
-
+            {,
                 //Update the data from the IMU sensor
                 _senseHat.Sensors.ImuSensor.Update();
 
@@ -61,20 +54,11 @@ namespace FishPi
                 {
 
                     //The data we will send over the network
-                    string data = "Accelerometer\nX: "
-                        + (_senseHat.Sensors.Acceleration.Value.X * 10).ToString()
-                        + "\nY: "
+                    string data =  (_senseHat.Sensors.Acceleration.Value.X * 10).ToString()
+                        + "\n "
                         + (_senseHat.Sensors.Acceleration.Value.Y * 10).ToString()
-                        + "\nZ: "
-                        + (_senseHat.Sensors.Acceleration.Value.Z * 10).ToString()
-                        + " \n\nGyroscope"
-                        + "\nX: "
-                        + (_senseHat.Sensors.Gyro.Value.X*10).ToString()
-                        + "\nY: "
-                        + (_senseHat.Sensors.Gyro.Value.Y*10).ToString()
-                        + "\nZ: "
-                        + (_senseHat.Sensors.Gyro.Value.Z*10).ToString()
-                        ;
+                        + "\n "
+                        + (_senseHat.Sensors.Acceleration.Value.Z * 10).ToString();
 
                     //Byte array to package our data
                     byte[] sendBytes = Encoding.ASCII.GetBytes(data);
@@ -87,8 +71,9 @@ namespace FishPi
                 //if there is no acceleration value
                 else
                 {
+
                     //Wait and try again
-                    Task.Delay(500).Wait();
+                    Task.Delay(200).Wait();
 
                 }
 
@@ -105,7 +90,7 @@ namespace FishPi
 
             });
 
-            task.Wait();
+            task.Wait(); 
 
             return await task;
 
