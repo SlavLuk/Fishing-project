@@ -69,6 +69,7 @@ public class PiData : MonoBehaviour {
 
 				//Seperate the Incomming byte(converted to string), into seperate values
 				currentReading = Encoding.ASCII.GetString(receivedData).Split(' ', '\t');
+
                 if (accelerationOfX <= 0 || accelerationOfX >= 0)
                 {
                     //3 Axis for X,Y and Z
