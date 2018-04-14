@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -127,6 +127,7 @@ GameObject:
   - component: {fileID: 26421197}
   - component: {fileID: 26421198}
   - component: {fileID: 26421199}
+  - component: {fileID: 26421200}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -141,11 +142,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 26421192}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 7.94}
+  m_LocalPosition: {x: 0, y: 0, z: -5}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
-  m_Father: {fileID: 1622868243}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &26421194
 MeshRenderer:
@@ -307,6 +308,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 42900af687766cc46a12c1995a5a944d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &26421200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 26421192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e07eaa4cc8236c54b8c075306fac660c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &87620063
@@ -1146,7 +1158,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1622868243}
-  - component: {fileID: 1622868242}
   - component: {fileID: 1622868244}
   m_Layer: 0
   m_Name: Manager
@@ -1155,17 +1166,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1622868242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1622868241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2de59084510fe704d8f6eb50ae64ed57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1622868243
 Transform:
   m_ObjectHideFlags: 0
@@ -1177,7 +1177,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 333749519}
-  - {fileID: 26421193}
   m_Father: {fileID: 1112066746}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

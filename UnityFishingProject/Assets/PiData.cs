@@ -14,7 +14,8 @@ public class PiData : MonoBehaviour {
 	  //Using UDP Client, We dont need a socket Just collect the data if its offered
     private UdpClient client;
 
-		//Use the Ip and port as End Point
+
+	//Use the Ip and port as End Point
 	private IPEndPoint ep;
 
 
@@ -28,6 +29,9 @@ public class PiData : MonoBehaviour {
 	public static double gyroX = 0;
     public static double gyroY = 0;
     public static double gyroZ = 0;
+    public static double magX = 0;
+    public static double magY = 0;
+    public static double magZ = 0;
 
     //variables to store our readings
     public static string[] currentReading;
@@ -39,8 +43,10 @@ public class PiData : MonoBehaviour {
         // Open our client
         client = new UdpClient(port);
 
-		//end point
-		ep = new IPEndPoint(IPAddress.Any, port);
+        client.Client.ReceiveTimeout = 1000;
+
+        //end point
+        ep = new IPEndPoint(IPAddress.Any, port);
 
 		//Incoming data variable
 		var receivedData = client.Receive(ref ep);
@@ -57,7 +63,8 @@ public class PiData : MonoBehaviour {
             //Collect Data from Our UDP stream
             var receivedData = client.Receive(ref ep);
 
-			if(receivedData != null)
+
+            if (receivedData != null)
 			{
 
 				//Seperate the Incomming byte(converted to string), into seperate values
@@ -73,10 +80,15 @@ public class PiData : MonoBehaviour {
                     gyroY = Double.Parse(currentReading[4]);
                     gyroZ = Double.Parse(currentReading[5]);
 
+                    magX = Double.Parse(currentReading[3]);
+                    magY = Double.Parse(currentReading[4]);
+                    magZ = Double.Parse(currentReading[5]);
+
 
                     //For Testing purpose - Sets a Text object to a string of the incoming Data
                     this.name_text.text = accelerationOfX + "\n" + accelerationOfY + "\n" + accelerationOfZ + "\n"
-                        + gyroX + "\n" + gyroY + "\n" + gyroZ;
+                        + gyroX + "\n" + gyroY + "\n" + gyroZ + "\n"
+                        + magX + "\n" + magY + "\n" + magZ;
 
                 }
                 else {
@@ -92,15 +104,19 @@ public class PiData : MonoBehaviour {
                     gyroX = 0;
                     gyroY = 0;
                     gyroZ = 0;
+
+                    magX = 0;
+                    magY = 0;
+                    magZ = 0;
                 }
 
 			}
 		
         }
-        catch (Exception e)
+        catch (Exception)
         {
             //For testing purpose - sets the text object to error if we collect no data 
-            this.name_text.text = "Error " +e;
+            this.name_text.text = "Error No connection to Fishing Rod";
 
         }
 

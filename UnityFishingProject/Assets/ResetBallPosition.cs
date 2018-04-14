@@ -4,22 +4,10 @@ using UnityEngine;
 
 public class ResetBallPosition : MonoBehaviour {
 
-    GameObject sphere;
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     public void ResetBall()
     {
-
-        transform.SetPositionAndRotation(new Vector3(0, 0, 7.94f), Quaternion.Euler(0, 0, 0));
+        //Rest the balls position - recenter
+        transform.SetPositionAndRotation(new Vector3(0, 0, -5), Quaternion.Euler(0, 0, 0));
 
     }
 }

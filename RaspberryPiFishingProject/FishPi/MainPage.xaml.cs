@@ -65,6 +65,12 @@ namespace FishPi
                         + (_senseHat.Sensors.Gyro.Value.Y).ToString()
                         + "\n "
                         + (_senseHat.Sensors.Gyro.Value.Z).ToString()
+                        + "\n "
+                        + (_senseHat.Sensors.MagneticField.Value.X).ToString()
+                        + "\n "
+                        + (_senseHat.Sensors.MagneticField.Value.Y).ToString()
+                        + "\n "
+                        + (_senseHat.Sensors.MagneticField.Value.Z).ToString()
                         ;
 
                     //Byte array to package our data
