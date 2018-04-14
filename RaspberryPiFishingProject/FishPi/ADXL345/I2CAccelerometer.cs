@@ -44,9 +44,11 @@ namespace FishPi.I2CAccelerometer
             private async void InitI2CAccel()
             {
 
-                var settings = new I2cConnectionSettings(ACCEL_I2C_ADDR);
-                settings.BusSpeed = I2cBusSpeed.FastMode;
-                var controller = await I2cController.GetDefaultAsync();
+            var settings = new I2cConnectionSettings(ACCEL_I2C_ADDR)
+            {
+                BusSpeed = I2cBusSpeed.FastMode
+            };
+            var controller = await I2cController.GetDefaultAsync();
                 I2CAccel = controller.GetDevice(settings);    /* Create an I2cDevice with our selected bus controller and I2C settings */
 
 
