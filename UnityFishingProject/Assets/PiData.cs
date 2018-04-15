@@ -36,9 +36,15 @@ public class PiData : MonoBehaviour {
     //variables to store our readings
     public static string[] currentReading;
 
+    public GameObject next;
+    public GameObject previous;
+
 
     void Start()
     {
+
+        next.SetActive(false);
+        previous.SetActive(false);
 
         // Open our client
         client = new UdpClient(port);
@@ -74,10 +80,12 @@ public class PiData : MonoBehaviour {
                     accelerationOfY = (int)Double.Parse(currentReading[1]);
                     accelerationOfZ = (int)Double.Parse(currentReading[2]);
 
+                    //GyroScope
                     gyroX = Double.Parse(currentReading[3]);
                     gyroY = Double.Parse(currentReading[4]);
                     gyroZ = Double.Parse(currentReading[5]);
 
+                    //Magnometer
                     magX = Double.Parse(currentReading[3]);
                     magY = Double.Parse(currentReading[4]);
                     magZ = Double.Parse(currentReading[5]);
@@ -94,7 +102,7 @@ public class PiData : MonoBehaviour {
                     //For Testing purpose - Sets a Text object to a string of the incoming Data
                     this.name_text.text = "Error, No Reading";
 
-                    //3 Axis for X,Y and Z
+                    //reset
                     accelerationOfX = 0;
                     accelerationOfY = 0;
                     accelerationOfZ = 0;

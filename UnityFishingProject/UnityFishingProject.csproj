@@ -284,6 +284,7 @@
     <Compile Include="Assets\Killswitch.cs" />
     <Compile Include="Assets\MoveSphere.cs" />
     <Compile Include="Assets\PiData.cs" />
+    <Compile Include="Assets\PreviousCastSwitch.cs" />
     <Compile Include="Assets\RecordPositions.cs" />
     <Compile Include="Assets\ResetBallPosition.cs" />
   </ItemGroup>
