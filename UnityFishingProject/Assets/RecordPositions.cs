@@ -15,13 +15,13 @@ public class RecordPositions : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+
         RecordState();
 
     }
 
     public void RecordState() {
 
-        pos = GameObject.Find("Sphere").transform.position;
 
         if (this.recordStatus == true)
         {
