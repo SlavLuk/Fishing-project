@@ -10,6 +10,7 @@ public class RecordPositions : MonoBehaviour {
     Vector3 pos;
     private bool recordStatus = false;
     private List<Coordinates> list = new List<Coordinates>();
+    public Text buttonValue;
 
     // Update is called once per frame
     void Update () {
@@ -50,9 +51,11 @@ public class RecordPositions : MonoBehaviour {
 
         if (this.recordStatus == false)
         {
-
             
             this.recordStatus = true;
+
+            //Change the text on the record Button
+            this.buttonValue.text = "Stop Recording";
 
         }
         else
@@ -65,6 +68,9 @@ public class RecordPositions : MonoBehaviour {
 
             //Stop the recording
             this.recordStatus = false;
+
+            //Change the text on the record Button
+            this.buttonValue.text = "Start Recording";
 
         }
 
