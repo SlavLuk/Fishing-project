@@ -6,11 +6,6 @@ public class RecordPositions : MonoBehaviour {
 
     Vector3 pos;
     private bool recordStatus = false;
-
-    // Use this for initialization
-    void Start () {
-
-	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -29,17 +24,13 @@ public class RecordPositions : MonoBehaviour {
             Debug.Log(pos);
 
         }
-        else {
-
-            Debug.ClearDeveloperConsole();
-
-        }
 
     }
 
     public bool GetRecordStatus() {
 
         return this.recordStatus;
+
     }
 
     public void SetRecordStatus()
@@ -47,10 +38,14 @@ public class RecordPositions : MonoBehaviour {
 
         if (this.recordStatus == false)
         {
+
             this.recordStatus = true;
+
         }
         else {
+
             this.recordStatus = false;
+
         }
 
     }
