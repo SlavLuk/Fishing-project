@@ -5,6 +5,7 @@ using UnityEngine;
 public class RecordPositions : MonoBehaviour {
 
     Vector3 pos;
+    private bool recordStatus = false;
 
     // Use this for initialization
     void Start () {
@@ -14,7 +15,43 @@ public class RecordPositions : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        RecordState();
+
+    }
+
+    public void RecordState() {
+
         pos = GameObject.Find("Sphere").transform.position;
+
+        if (this.recordStatus == true)
+        {
+
+            Debug.Log(pos);
+
+        }
+        else {
+
+            Debug.ClearDeveloperConsole();
+
+        }
+
+    }
+
+    public bool GetRecordStatus() {
+
+        return this.recordStatus;
+    }
+
+    public void SetRecordStatus()
+    {
+
+        if (this.recordStatus == false)
+        {
+            this.recordStatus = true;
+        }
+        else {
+            this.recordStatus = false;
+        }
 
     }
 
