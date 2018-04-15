@@ -48,9 +48,6 @@ public class PiData : MonoBehaviour {
         //end point
         ep = new IPEndPoint(IPAddress.Any, port);
 
-		//Incoming data variable
-		var receivedData = client.Receive(ref ep);
-
 
     }
 

@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Coordinates : MonoBehaviour {
+public class Coordinates {
 
     private double xPos;
     private double yPos;
     private double zPos;
 
-    Coordinates(double x,double y ,double z) {
+    public Coordinates(double x,double y ,double z) {
 
         this.XPos = x;
         this.yPos = y;

@@ -7,7 +7,7 @@ public class ResetBallPosition : MonoBehaviour {
     public void ResetBall()
     {
         //Rest the balls position - recenter
-        transform.SetPositionAndRotation(new Vector3(0, 0, -5), Quaternion.Euler(0, 0, 0));
+        transform.SetPositionAndRotation(new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
 
     }
 }
