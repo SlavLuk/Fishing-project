@@ -10,14 +10,17 @@ public class History : MonoBehaviour {
     private int noOfFiles = 0;
     public GameObject nextButton;
     public GameObject previousButton;
+    private bool clickCondition = false;
+
     private static List<Coordinates> points = new List<Coordinates>();
+    private DirectoryInfo di = new DirectoryInfo("./");
+
 
 
     void Start()
     {
 
         //number of files
-        DirectoryInfo di = new DirectoryInfo("./");
         FileInfo[] TXTFile = di.GetFiles("*.txt");
         noOfFiles = TXTFile.Length;
         if (noOfFiles == 0 ) {
@@ -52,27 +55,44 @@ public class History : MonoBehaviour {
 
     public void ButtonState()
     {
+
+        if (noOfFiles > 1)
+        {
+
+            if (counter == noOfFiles - 1)
+            {
+
+                previousButton.SetActive(false);
+
+            }
+            else
+            {
+
+                previousButton.SetActive(true);
+
+            }
+
+            if (counter != 0)
+            {
+
+                nextButton.SetActive(true);
+
+            }
+            else {
+
+                nextButton.SetActive(false);
+
+            }
+
+        }
+        else {
+            nextButton.SetActive(false);
+            previousButton.SetActive(false);
+        }
+
+        Debug.Log(counter);
+
         ReadFromFile();
-
-        nextButton.SetActive(true);
-        previousButton.SetActive(false);
-
-        if (noOfFiles <= 1) {
-            nextButton.SetActive(false);
-            previousButton.SetActive(false);
-        }
-        if (counter == 0){
-            nextButton.SetActive(false);
-        }
-        else {
-            nextButton.SetActive(true);
-        }
-        if (counter == noOfFiles - 1){
-            previousButton.SetActive(false);
-        }
-        else {
-            previousButton.SetActive(true);
-        }
 
     }
 
@@ -85,23 +105,42 @@ public class History : MonoBehaviour {
 
             string[] lines = System.IO.File.ReadAllLines(@"./Coordinates"+counter+".txt");
 
-            for (int i = 0; i < lines.Length; i++)
+            for (int i = 0; i < lines.Length-1; i++)
             {
                 split = lines[i].Split(' ');
-                
-                points.Add(new Coordinates(float.Parse(split[0]), float.Parse(split[1]), float.Parse(split[2])));
 
+                //points.Add(new Coordinates(float.Parse(split[0]), float.Parse(split[1]), float.Parse(split[2])));
 
             }
-
-            Debug.Log(points.Count);
 
         }
 
     }
 
     public static  List<Coordinates> GetPoints() {
+
         return points;
+
+    }
+
+    public void Active() {
+
+        if (clickCondition == false)
+        {
+            counter = 0;
+            ButtonState();
+
+            clickCondition = true;
+        }
+        else {
+
+            nextButton.SetActive(false);
+            previousButton.SetActive(false);
+
+            clickCondition = true;
+
+        }
+
     }
 
 
