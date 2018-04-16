@@ -38,6 +38,7 @@ public class PiData : MonoBehaviour {
 
     public GameObject next;
     public GameObject previous;
+    public GameObject sphere2;
 
 
     void Start()
@@ -45,6 +46,7 @@ public class PiData : MonoBehaviour {
 
         next.SetActive(false);
         previous.SetActive(false);
+        sphere2.SetActive(false);
 
         // Open our client
         client = new UdpClient(port);

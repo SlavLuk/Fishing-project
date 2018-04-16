@@ -90,8 +90,6 @@ public class History : MonoBehaviour {
             previousButton.SetActive(false);
         }
 
-        Debug.Log(counter);
-
         ReadFromFile();
 
     }
@@ -109,7 +107,7 @@ public class History : MonoBehaviour {
             {
                 split = lines[i].Split(' ');
 
-                //points.Add(new Coordinates(float.Parse(split[0]), float.Parse(split[1]), float.Parse(split[2])));
+                points.Add(new Coordinates(float.Parse(split[0]), float.Parse(split[1]), float.Parse(split[2])));
 
             }
 
@@ -127,7 +125,9 @@ public class History : MonoBehaviour {
 
         if (clickCondition == false)
         {
+
             counter = 0;
+
             ButtonState();
 
             clickCondition = true;
