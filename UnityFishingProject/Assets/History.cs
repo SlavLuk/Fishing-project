@@ -86,7 +86,6 @@ public class History : MonoBehaviour {
                     float.Parse(split[2])
                 );
 
-
                 //Need to print line here from PointA to PointB
 
                 pointA = new Vector3(
