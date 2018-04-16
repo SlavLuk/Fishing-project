@@ -70,6 +70,7 @@ public class History : MonoBehaviour {
 
         if (noOfFiles > 0)
         {
+            Vector3 pointA = new Vector3(0,0,0);
 
             string[] split;
 
@@ -79,12 +80,20 @@ public class History : MonoBehaviour {
             {
                 split = lines[i].Split(' ');
 
-                Vector3 pos1 = new Vector3(
+                Vector3 pointB = new Vector3(
                     float.Parse(split[0]),
                     float.Parse(split[1]),
                     float.Parse(split[2])
                 );
 
+
+                //Need to print line here from PointA to PointB
+
+                pointA = new Vector3(
+                    float.Parse(split[0]),
+                    float.Parse(split[1]),
+                    float.Parse(split[2])
+                );
 
             }
 
