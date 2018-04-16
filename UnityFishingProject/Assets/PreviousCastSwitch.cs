@@ -50,7 +50,7 @@ public class PreviousCastSwitch : MonoBehaviour {
         sphere.SetActive(state);
         onScreenText.SetActive(state);
         next.SetActive(!state);
-        previous.SetActive(!state);
+        previous.SetActive(false);
 
     }
 
