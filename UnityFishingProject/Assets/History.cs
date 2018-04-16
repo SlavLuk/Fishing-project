@@ -10,9 +10,7 @@ public class History : MonoBehaviour {
     private int noOfFiles = 0;
     public GameObject nextButton;
     public GameObject previousButton;
-
-    public Material material;
-
+    private static List<Coordinates> points = new List<Coordinates>();
 
 
     void Start()
@@ -22,7 +20,15 @@ public class History : MonoBehaviour {
         DirectoryInfo di = new DirectoryInfo("./");
         FileInfo[] TXTFile = di.GetFiles("*.txt");
         noOfFiles = TXTFile.Length;
-        counter = noOfFiles - 1;
+        if (noOfFiles == 0 ) {
+
+            counter = 0;
+        }
+        else {
+
+            counter = noOfFiles - 1;
+
+        }
 
     }
 
@@ -30,12 +36,16 @@ public class History : MonoBehaviour {
     {
         counter++;
 
+        points.Clear();
+
         ButtonState();
     }
 
     public void PressNext()
     {
         counter--;
+
+        points.Clear();
 
         ButtonState();
     }
@@ -70,34 +80,28 @@ public class History : MonoBehaviour {
 
         if (noOfFiles > 0)
         {
-            Vector3 pointA = new Vector3(0,0,0);
 
-            string[] split;
+            string[] split = { "0","0","0"};
 
             string[] lines = System.IO.File.ReadAllLines(@"./Coordinates"+counter+".txt");
 
-            for (int i =0; i < lines.Length; i++)
+            for (int i = 0; i < lines.Length; i++)
             {
                 split = lines[i].Split(' ');
+                
+                points.Add(new Coordinates(float.Parse(split[0]), float.Parse(split[1]), float.Parse(split[2])));
 
-                Vector3 pointB = new Vector3(
-                    float.Parse(split[0]),
-                    float.Parse(split[1]),
-                    float.Parse(split[2])
-                );
-
-                //Need to print line here from PointA to PointB
-
-                pointA = new Vector3(
-                    float.Parse(split[0]),
-                    float.Parse(split[1]),
-                    float.Parse(split[2])
-                );
 
             }
 
+            Debug.Log(points.Count);
+
         }
 
+    }
+
+    public static  List<Coordinates> GetPoints() {
+        return points;
     }
 
 
