@@ -36,21 +36,22 @@ namespace FishPi
             //UDP socket
             Socket client = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
 
-            //get our sense hat
-            _senseHat = await GetSenseHatAsync();
-
 
             //udp client on port 5000
             UdpClient udpClient = new UdpClient(port);
 
             while (true)
             {
+
+                //get our sense hat
+                _senseHat = await GetSenseHatAsync();
+
                 //Update the data from the IMU sensor
                 _senseHat.Sensors.ImuSensor.Update();
 
 
                 //If there is an acceleration value
-                if (_senseHat.Sensors.Acceleration.HasValue && _senseHat.Sensors.Gyro.HasValue)
+                if (_senseHat.Sensors.Acceleration.HasValue)
                 {
 
                     //The data we will send over the network
@@ -86,7 +87,7 @@ namespace FishPi
                 {
 
                     //Wait and try again
-                    Task.Delay(200).Wait();
+                    Task.Delay(500).Wait();
 
                 }
 

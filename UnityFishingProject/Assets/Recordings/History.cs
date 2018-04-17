@@ -15,9 +15,7 @@ public class History : MonoBehaviour {
     private static List<Coordinates> points = new List<Coordinates>();
     private DirectoryInfo di = new DirectoryInfo("./");
 
-
-
-    void Start()
+    public void CountFiles()
     {
 
         //number of files
@@ -56,41 +54,43 @@ public class History : MonoBehaviour {
     public void ButtonState()
     {
 
-        if (noOfFiles > 1)
-        {
-
-            if (counter == noOfFiles - 1)
+            if (noOfFiles > 1)
             {
 
-                previousButton.SetActive(false);
+                if (counter == noOfFiles - 1)
+                {
+
+                    previousButton.SetActive(false);
+
+                }
+                else
+                {
+
+                    previousButton.SetActive(true);
+
+                }
+
+                if (counter != 0)
+                {
+
+                    nextButton.SetActive(true);
+
+                }
+                else
+                {
+
+                    nextButton.SetActive(false);
+
+                }
 
             }
             else
             {
-
-                previousButton.SetActive(true);
-
-            }
-
-            if (counter != 0)
-            {
-
-                nextButton.SetActive(true);
-
-            }
-            else {
-
                 nextButton.SetActive(false);
-
+                previousButton.SetActive(false);
             }
 
-        }
-        else {
-            nextButton.SetActive(false);
-            previousButton.SetActive(false);
-        }
-
-        ReadFromFile();
+            ReadFromFile();
 
     }
 
@@ -134,10 +134,7 @@ public class History : MonoBehaviour {
         }
         else {
 
-            nextButton.SetActive(false);
-            previousButton.SetActive(false);
-
-            clickCondition = true;
+            clickCondition = false;
 
         }
 

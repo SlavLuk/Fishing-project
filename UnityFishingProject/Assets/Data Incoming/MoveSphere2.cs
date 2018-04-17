@@ -8,8 +8,6 @@ public class MoveSphere2 : MonoBehaviour {
 
     public GameObject sphere2;
 
-    int i = 0;
-
     // Use this for initialization
     void Start () {
 	
