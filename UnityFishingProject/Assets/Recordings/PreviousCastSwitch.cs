@@ -8,7 +8,6 @@ public class PreviousCastSwitch : MonoBehaviour {
     public Text button_text;
     private bool buttonPressed = false;
     public GameObject sphere;
-    public GameObject sphere2;
     public GameObject onScreenText;
     public GameObject next;
     public GameObject previous;
@@ -52,7 +51,6 @@ public class PreviousCastSwitch : MonoBehaviour {
     public void ShowHide(bool state) {
 
         sphere.SetActive(state);
-        sphere2.SetActive(!state);
         onScreenText.SetActive(state);
         next.SetActive(!state);
         previous.SetActive(!state);

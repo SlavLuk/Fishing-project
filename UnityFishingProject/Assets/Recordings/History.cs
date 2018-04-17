@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class History : MonoBehaviour {
 
-    private int counter = 0;
+    public static int counter = 0;
     private int noOfFiles = 0;
     public GameObject nextButton;
     public GameObject previousButton;
@@ -21,6 +21,7 @@ public class History : MonoBehaviour {
         //number of files
         FileInfo[] TXTFile = di.GetFiles("*.txt");
         noOfFiles = TXTFile.Length;
+
         if (noOfFiles == 0 ) {
 
             counter = 0;

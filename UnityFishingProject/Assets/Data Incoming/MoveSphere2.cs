@@ -4,31 +4,44 @@ using UnityEngine;
 
 public class MoveSphere2 : MonoBehaviour {
 
-    private static List<Coordinates> points = new List<Coordinates>();
+    private static IList<Coordinates> points = new List<Coordinates>();
 
-    public GameObject sphere2;
+    private void Start()
+    {
+        GetComponent<LineRenderer>().enabled = false;
+    }
 
     // Use this for initialization
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	public void Move() {
+    public void Move() {
 
-        sphere2.transform.SetPositionAndRotation(new Vector3(0, 0, 0), new Quaternion(0f, 0f, 0f, 0f));
+        LineRenderer lineRenderer = GetComponent<LineRenderer>();
+
+        GetComponent<LineRenderer>().enabled = true;
+
+        int count = 0;
 
         points = History.GetPoints();
 
-        Debug.Log(points.Count);
+        Vector3[] tests = new Vector3[3];
+
+        lineRenderer.positionCount = points.Count;
 
         foreach (Coordinates point in points) {
 
-            sphere2.transform.SetPositionAndRotation(new Vector3((float)point.XPos, (float)point.YPos, (float)point.ZPos), new Quaternion(0f, 0f, 0f, 0f));
-
+            lineRenderer.SetPosition(count, new Vector3((float)point.XPos, (float)point.YPos, (float)point.ZPos) );
+            count++;
         }
 
+        count = 0;
+
         points.Clear();
-		
-	}
+
+    }
+
+    public void Destroy(){
+
+        GetComponent<LineRenderer>().enabled = false;
+
+    }
+
 }
