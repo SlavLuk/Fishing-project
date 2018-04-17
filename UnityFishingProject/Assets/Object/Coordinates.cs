@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Coordinates {
 
+    //Our coordinates object
     private double xPos;
     private double yPos;
     private double zPos;

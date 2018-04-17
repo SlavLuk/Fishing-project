@@ -19,6 +19,7 @@ public class PreviousCastSwitch : MonoBehaviour {
         {
             ShowHide(true);
 
+            //change button text
             this.button_text.text = "View Previous Casts";
             this.buttonPressed = false;
 
@@ -28,6 +29,7 @@ public class PreviousCastSwitch : MonoBehaviour {
   
             ShowHide(false);
             
+            //change button text
             this.buttonPressed = true;
             this.button_text.text = "Back to Live cast";
 
@@ -50,6 +52,7 @@ public class PreviousCastSwitch : MonoBehaviour {
 
     public void ShowHide(bool state) {
 
+        //hide and show UI elements
         sphere.SetActive(state);
         onScreenText.SetActive(state);
         next.SetActive(!state);

@@ -12,6 +12,7 @@ public class Killswitch : MonoBehaviour {
     // Update is called once per frame
     public void Update()
     {
+        //If escape key is pressed, quit the game
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             QuitGame();
