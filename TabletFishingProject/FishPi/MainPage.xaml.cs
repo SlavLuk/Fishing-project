@@ -27,7 +27,7 @@ namespace FishPi
         Socket client = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
 
         //Ip address and port number of our unity build
-        string ip = "127.0.0.1";
+        string ip = "192.168.137.1";
         int port = 5000;
         EndPoint ep;
 
@@ -62,7 +62,12 @@ namespace FishPi
                         string data = (readingAccel.AccelerationX * 10).ToString() + "\n "
                                         + (readingAccel.AccelerationY * 10).ToString() + "\n "
                                         + (readingAccel.AccelerationZ * 10).ToString() + "\n "
-                                        + DateTime.Now.TimeOfDay;
+                                        + "0.0" + "\n"
+                                        + "0.0" + "\n"
+                                        + "0.0" + "\n"
+                                        + "0.0" + "\n"
+                                        + "0.0" + "\n"
+                                        + "0.0";
 
                         //Byte array to package our data
                         byte[] sendBytes = Encoding.ASCII.GetBytes(data);
