@@ -24,5 +24,12 @@ public class MoveSphere : MonoBehaviour {
         //without Y axis
         transform.Translate((int)PiData.accelerationOfX, 0, (int)PiData.accelerationOfZ);
 
+		EnableTrail ();
+
     }
+
+	public void EnableTrail(){
+
+		GetComponent<TrailRenderer>().enabled=true;
+	}
 }

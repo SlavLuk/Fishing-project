@@ -27,7 +27,7 @@ namespace FishPi
         Socket client = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
 
         //Ip address and port number of our unity build
-        string ip = "192.168.137.1";
+        string ip = "192.168.0.7";
         int port = 5000;
         EndPoint ep;
 
