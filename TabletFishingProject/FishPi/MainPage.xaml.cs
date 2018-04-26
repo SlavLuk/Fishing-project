@@ -34,7 +34,8 @@ namespace FishPi
         public MainPage()
         {
             //Default accelerometer
-            _accelerometer = Accelerometer.GetDefault();
+            _accelerometer = Accelerometer.GetDefault(AccelerometerReadingType.Linear);
+            //_accelerometer = Accelerometer.GetDefault();
             _gyrometer = Gyrometer.GetDefault();
             _magnetometer = Magnetometer.GetDefault();
 
@@ -56,28 +57,32 @@ namespace FishPi
                     try
                     {
                         //Read the accelerometer
+                        //AccelerometerReadingType.Linear
                         AccelerometerReading readingAccel = _accelerometer.GetCurrentReading();
 
                         //The data we will send over the network
                         string data = (readingAccel.AccelerationX * 10).ToString() + "\n "
-                                        + (readingAccel.AccelerationY * 10).ToString() + "\n "
-                                        + (readingAccel.AccelerationZ * 10).ToString() + "\n "
-                                        + "0.0" + "\n"
-                                        + "0.0" + "\n"
-                                        + "0.0" + "\n"
-                                        + "0.0" + "\n"
-                                        + "0.0" + "\n"
-                                        + "0.0";
+                        + (readingAccel.AccelerationY * 10).ToString() + "\n "
+                        + (readingAccel.AccelerationZ * 10).ToString() + "\n "
+                        + "0.0" + "\n"
+                        + "0.0" + "\n"
+                        + "0.0" + "\n"
+                        + "0.0" + "\n"
+                        + "0.0" + "\n"
+                        + "0.0";
+
+                        Debug.WriteLine(data);
 
                         //Byte array to package our data
                         byte[] sendBytes = Encoding.ASCII.GetBytes(data);
                         //Send the data using a udpclient with our endpoint
                         client.SendTo(sendBytes, ep);
 
-                        Task.Delay(200).Wait();
+
+                        Task.Delay(20).Wait();
                     }
                     catch (Exception) {
-                        Debug.WriteLine("Failed to send");
+                        Debug.WriteLine("Error");
                     }
                 }
                 //if there is no acceleration value
